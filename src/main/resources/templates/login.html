@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Login Page</title>
+	<link rel="stylesheet" href="../css/main.css" />
+	<link rel="stylesheet" href="../css/forms.css" />
+</head>
+
+<body>
+	<ul class="navigation_bar">
+		<a th:href="@{/}" class="logo"><img th:src="@{images/MusicSheetsLogo.png}" alt="logo" /></a>
+		<a th:href="@{/}" class="home_nav">Home</a>
+		<a href="#" class="sheets_nav">Sheets</a>
+		<a href="#" class="profile_nav">Profile</a>
+		<div sec:authorize="isAnonymous()">
+			<a th:href="@{/login}" class="login_button">Login</a>
+		</div>
+		<br />
+		<div sec:authorize="isAnonymous()">
+			<a th:href="@{/registration}" class="register_button">Register</a>
+		</div>
+	</ul>
+	<h1>Login</h1>
+	<div class="login_form">
+		<form th:action="@{/login}" method="post">
+			<div th:if="${param.error}">
+				<p>Invalid email or password.</p>
+			</div>
+			<div th:if="${param.logout}">
+				<p>You have been logged out.</p>
+			</div>
+			<div>
+				<label for="username">Email</label>
+				<input type="text" id="username" name="username" autofocus="autofocus" placeholder="Email" />
+			</div>
+			<div>
+				<label for="password">Password</label>
+				<input type="password" id="password" name="password" placeholder="Password" />
+			</div>
+			<input type="submit" name="login-submit" id="login-submit" value="Log In" />
+			<br />
+			<span>New user?
+				<a href="/" th:href="@{/registration}">Register here</a></span>
+		</form>
+	</div>
+	<div class="footer">
+		<a href="#" class="logo_footer"><img th:src="@{images/MusicSheetsLogo.png}" alt="logo" /></a>
+		<div class="pages_list">
+			<h3>Pages</h3>
+			<li>Home</li>
+			<li>Sheets</li>
+			<li>Profile</li>
+		</div>
+		<br />
+		<h5>© Music Sheets 2022</h5>
+		<div class="footer_text">
+			<h5>Contact Us</h5>
+			<h5>Terms and Conditions</h5>
+			<h5>Privacy Policy</h5>
+		</div>
+	</div>
+</body>
+
+</html>

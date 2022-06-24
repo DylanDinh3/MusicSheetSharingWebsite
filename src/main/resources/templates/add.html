@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Add Sheet Music Page</title>
+	<link rel="stylesheet" href="../css/main.css" />
+	<link rel="stylesheet" href="../css/forms.css" />
+</head>
+
+<body>
+	<ul class="navigation_bar">
+		<a th:href="@{/}" class="logo"><img src="../images/MusicSheetsLogo.png" alt="logo" /></a>
+		<a th:href="@{/}" class="home_nav">Home</a>
+		<a href="#" class="sheets_nav">Sheets</a>
+		<a href="#" class="profile_nav">Profile</a>
+		<div sec:authorize="isAnonymous()">
+			<a th:href="@{/login}" class="login_button">Login</a>
+		</div>
+		<div sec:authorize="isAuthenticated()">
+			<a th:href="@{/logout}" class="logout_button">Logout</a>
+		</div>
+		<br />
+		<div sec:authorize="isAnonymous()">
+			<a th:href="@{/registration}" class="register_button">Register</a>
+		</div>
+	</ul>
+	
+	<p th:if="${param.success}">Successfully added!</p>
+	
+	<div class="add_form">
+		<h1>Add New Sheet Music</h1>
+		<br />
+		<form action="#" th:action="@{/sheets/addSheet}" th:object="${sheetInput}" method="post" enctype="multipart/form-data">
+			<label for="Title">Enter Title</label>
+			<input type="text" th:field="*{title}" placeholder="Title" required />
+			<br />
+			<label for="Composer">Enter Composer(s), seperated by a comma</label>
+			<input type="text" th:field="*{composers}" placeholder="Composer(s)" required />
+			<br />
+			<label for="Instrument">Enter Instrument(s), seperated by a comma</label>
+			<input type="text" name="instruments" placeholder="Instrument(s)" required />
+			<br />
+			<label for="sheets">Upload Music Sheets File Here</label>
+			<input type="file" name="file" th:field="*{images}" required />
+			<br />
+			<button type="submit">Submit</button>
+		</form>
+	</div>
+	<div class="footer">
+		<a th:href="@{/}" class="logo_footer"><img src="../images/MusicSheetsLogo.png" alt="logo" /></a>
+		<div class="pages_list">
+			<h3>Pages</h3>
+			<li>Home</li>
+			<li>Sheets</li>
+			<li>Profile</li>
+		</div>
+		<br />
+		<h5>© Music Sheets 2022</h5>
+		<div class="footer_text">
+			<h5>Contact Us</h5>
+			<h5>Terms and Conditions</h5>
+			<h5>Privacy Policy</h5>
+		</div>
+	</div>
+</body>
+
+</html>

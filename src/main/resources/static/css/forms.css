@@ -1,0 +1,24 @@
+:root {
+  --main-color: rgb(92, 216, 255);
+  --secondary-color: rgb(64, 114, 241);
+}
+
+h1 {
+  text-align: center;
+  font-size: 35px;
+  color: var(--main-color);
+}
+
+.login_form,
+.registration_form,
+.add_form {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+form {
+  display: inline-block;
+  padding: 10px;
+  border: 2px solid var(--main-color);
+  width: 500px;
+}

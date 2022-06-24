@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Registration Page</title>
+	<link rel="stylesheet" href="../css/main.css" />
+	<link rel="stylesheet" href="../css/forms.css" />
+</head>
+
+<body>
+	<ul class="navigation_bar">
+		<a th:href="@{/}" class="logo"><img th:src="@{images/MusicSheetsLogo.png}" alt="logo" /></a>
+		<a th:href="@{/}" class="home_nav">Home</a>
+		<a href="#" class="sheets_nav">Sheets</a>
+		<a href="#" class="profile_nav">Profile</a>
+		<div sec:authorize="isAnonymous()">
+			<a th:href="@{/login}" class="login_button">Login</a>
+		</div>
+		<br />
+		<div sec:authorize="isAnonymous()">
+			<a th:href="@{/registration}" class="register_button">Register</a>
+		</div>
+	</ul>
+
+	<div th:if="${param.success}">
+		<div class="alert alert-info">
+			You've successfully registered to the website!
+		</div>
+	</div>
+
+	<h1>Registration</h1>
+	<div class="registration_form">
+		<form th:action="@{/registration}" th:object="${user}" method="post">
+			<p th:if="${#fields.hasGlobalErrors()}" th:each="error : ${#fields.errors('global')}" th:text="${error}">
+				Validation error
+			</p>
+
+			<div th:classappend="${#fields.hasErrors('username')}? 'has-error':''">
+				<label for="username">Username</label>
+				<input id="username" th:field="*{username}" placeholder="Username" required />
+				<p th:each="error: ${#fields.errors('username')}" th:text="${error}">
+					Validation error
+				</p>
+			</div>
+			<div th:classappend="${#fields.hasErrors('email')}? 'has-error':''">
+				<label for="email">Email</label>
+				<input id="email" th:field="*{email}" placeholder="Email" required />
+				<p th:each="error : ${#fields.errors('email')}" th:text="${error}">
+					Validation error
+				</p>
+			</div>
+			<!-- <div th:classappend="${#fields.hasErrors('confirmEmail')}? 'has-error':''">
+				<label for="confirmEmail">Confirm e-mail</label>
+				<input id="confirmEmail" th:field="*{confirmEmail}" required />
+				<p th:each="error : ${#fields.errors('confirmEmail')}" th:text="${error}">
+					Validation error
+				</p>
+			</div> -->
+			<div th:classappend="${#fields.hasErrors('password')}? 'has-error':''">
+				<label for="password">Password</label>
+				<input id="password" type="password" th:field="*{password}" placeholder="Password" required />
+				<p th:each="error : ${#fields.errors('password')}" th:text="${error}">
+					Validation error
+				</p>
+			</div>
+			<div th:classappend="${#fields.hasErrors('confirmPassword')}? 'has-error':''">
+				<label for="confirmPassword">Confirm password</label>
+				<input id="confirmPassword" type="password" th:field="*{confirmPassword}" placeholder="Reenter Password"
+					required />
+				<p th:each="error : ${#fields.errors('confirmPassword')}" th:text="${error}">
+					Validation error
+				</p>
+			</div>
+			<div th:classappend="${#fields.hasErrors('terms')}? 'has-error':''">
+				<input id="terms" type="checkbox" th:field="*{terms}" required />
+				<label for="terms">
+					I agree with the <a href="#">terms and conditions</a> for
+					Registration.
+				</label>
+				<p th:each="error : ${#fields.errors('terms')}" th:text="${error}">
+					Validation error
+				</p>
+			</div>
+			<button type="submit">Register</button>
+			<br />
+			<span>Already registered?
+				<a href="/" th:href="@{/login}">Login here</a></span>
+		</form>
+	</div>
+	<div class="footer">
+		<a href="#" class="logo_footer"><img th:src="@{images/MusicSheetsLogo.png}" alt="logo" /></a>
+		<div class="pages_list">
+			<h3>Pages</h3>
+			<li>Home</li>
+			<li>Sheets</li>
+			<li>Profile</li>
+		</div>
+		<br />
+		<h5>© Music Sheets 2022</h5>
+		<div class="footer_text">
+			<h5>Contact Us</h5>
+			<h5>Terms and Conditions</h5>
+			<h5>Privacy Policy</h5>
+		</div>
+	</div>
+</body>
+
+</html>

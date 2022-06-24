@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Index</title>
+	<link rel="stylesheet" href="../css/main.css" />
+	<link rel="stylesheet" href="../css/index.css" />
+</head>
+
+<body>
+	<ul class="navigation_bar">
+		<a th:href="@{/}" class="logo"><img th:src="@{images/MusicSheetsLogo.png}" alt="logo" /></a>
+		<a th:href="@{/}" class="home_nav">Home</a>
+		<a href="#" class="sheets_nav">Sheets</a>
+		<a href="#" class="profile_nav">Profile</a>
+		<div sec:authorize="isAnonymous()">
+			<a th:href="@{/login}" class="login_button">Login</a>
+		</div>
+		<div sec:authorize="isAuthenticated()">
+			<a th:href="@{/logout}" class="logout_button">Logout</a>
+		</div>
+		<br />
+		<div sec:authorize="isAnonymous()">
+			<a th:href="@{/registration}" class="register_button">Register</a>
+		</div>
+	</ul>
+</body>
+<h1>Welcome to Music Sheets!</h1>
+<br />
+<p>
+	Music Sheets is a website created for people to share their sheet music with
+	others, whether it is their own or one in the public domain, such as Mozart
+	or Beethoven.
+</p>
+<br />
+<h2>Check out some example music sheets below!</h2>
+<div class="footer">
+	<a th:href="@{/}" class="logo_footer"><img th:src="@{images/MusicSheetsLogo.png}" alt="logo" /></a>
+	<div class="pages_list">
+		<h3>Pages</h3>
+		<li>Home</li>
+		<li>Sheets</li>
+		<li>Profile</li>
+	</div>
+	<br />
+	<h5>© Music Sheets 2022</h5>
+	<div class="footer_text">
+		<h5>Contact Us</h5>
+		<h5>Terms and Conditions</h5>
+		<h5>Privacy Policy</h5>
+	</div>
+</div>
+
+</html>

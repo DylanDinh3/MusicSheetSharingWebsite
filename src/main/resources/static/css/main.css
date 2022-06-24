@@ -1,0 +1,98 @@
+:root {
+  --main-color: rgb(92, 216, 255);
+  --secondary-color: rgb(64, 114, 241);
+}
+
+.navigation_bar {
+  list-style-type: none;
+  border: 2px solid var(--main-color);
+  height: 145px;
+}
+
+.logo {
+  float: left;
+  margin-left: -30px;
+}
+
+.home_nav,
+.sheets_nav,
+.profile_nav {
+  display: block;
+  float: left;
+  color: var(--main-color);
+  margin-top: 30px;
+  margin-left: 50px;
+  margin-right: 30px;
+  padding: 15px;
+  text-align: center;
+  font-size: 40px;
+  text-decoration: none;
+}
+
+.login_button, .logout_button {
+  display: block;
+  float: right;
+  clear: right;
+  font-size: 30px;
+  text-align: center;
+  margin: 10px;
+  padding: 5px;
+  width: 200px;
+  color: var(--main-color);
+  text-decoration: none;
+  border: 2px solid var(--main-color);
+}
+
+.register_button {
+  display: block;
+  float: right;
+  clear: right;
+  font-size: 30px;
+  text-align: center;
+  margin: 10px;
+  padding: 5px;
+  width: 200px;
+  color: white;
+  background-color: var(--main-color);
+  text-decoration: none;
+  border: 2px solid var(--main-color);
+}
+
+.footer {
+  background-color: rgb(241, 241, 241);
+}
+
+.logo_footer {
+  background-color: rgb(241, 241, 241);
+  margin-left: 25px;
+}
+
+.logo_footer > img {
+  width: 150px;
+  height: 76px;
+  mix-blend-mode: darken;
+  margin-top: 20px;
+}
+
+.pages_list {
+  list-style-type: none;
+  text-align: center;
+  margin-top: -90px;
+}
+
+.pages_list > h3 {
+  margin-bottom: -1px;
+  text-align: center;
+  margin-top: -25px;
+}
+
+h5 {
+  margin-left: 30px;
+}
+
+.footer_text {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  margin-top: -70px;
+}
