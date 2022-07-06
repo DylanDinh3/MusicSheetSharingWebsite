@@ -1,13 +1,22 @@
 package org.dylandinh.musicsheetsharingwebsite.upload;
 
-import org.springframework.web.multipart.MultipartFile;
+import org.dylandinh.musicsheetsharingwebsite.model.User;
 
 public class SheetInput {
+	private int id;
 	private String title;
 	private String composers;
 	private String instruments;
-	private MultipartFile images;
-	private String user;
+	private String images;
+	private User user;
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
 
 	public String getTitle() {
 		return title;
@@ -33,19 +42,19 @@ public class SheetInput {
 		this.instruments = instruments;
 	}
 	
-	public MultipartFile getImages() {
+	public String getImages() {
 		return images;
 	}
 	
-	public void setImages(MultipartFile images) {
+	public void setImages(String images) {
 		this.images = images;
 	}
 
-	public String getUser() {
+	public User getUser() {
 		return user;
 	}
 
-	public void setUser(String user) {
+	public void setUser(User user) {
 		this.user = user;
 	}
 }

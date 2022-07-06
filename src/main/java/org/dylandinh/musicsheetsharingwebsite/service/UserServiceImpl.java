@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 
 import org.dylandinh.musicsheetsharingwebsite.model.Role;
 import org.dylandinh.musicsheetsharingwebsite.model.User;
+import org.dylandinh.musicsheetsharingwebsite.repository.RoleRepository;
 import org.dylandinh.musicsheetsharingwebsite.repository.UserRepository;
 import org.dylandinh.musicsheetsharingwebsite.security.UserRegistrationDto;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +22,9 @@ public class UserServiceImpl implements UserService {
 
 	@Autowired
 	private UserRepository userRepository;
+	
+	@Autowired
+	private RoleRepository roleRepository;
 
 	@Autowired
 	private BCryptPasswordEncoder passwordEncoder;
@@ -38,7 +42,12 @@ public class UserServiceImpl implements UserService {
 		user.setUsername(registration.getUsername());
 		user.setEmail(registration.getEmail());
 		user.setPassword(passwordEncoder.encode(registration.getPassword()));
-		user.setRoles(Arrays.asList(new Role("ROLE_USER")));
+		if(userRepository.findAll() == null)
+			user.setRoles(Arrays.asList(new Role("ROLE_USER")));
+		else {
+			Role role = roleRepository.findByName("ROLE_USER");
+			user.setRoles(Arrays.asList(role));
+		}
 		return userRepository.save(user);
 	}
 
@@ -46,7 +55,7 @@ public class UserServiceImpl implements UserService {
 	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
 		User user = userRepository.findByEmail(email);
 		if (user == null)
-			throw new UsernameNotFoundException("Invalid username or password.");
+			throw new UsernameNotFoundException("Invalid email or password.");
 		return new org.springframework.security.core.userdetails.User(user.getEmail(),
 		user.getPassword(),
 		mapRolesToAuthorities(user.getRoles()));

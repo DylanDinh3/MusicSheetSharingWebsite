@@ -3,9 +3,14 @@
   --secondary-color: rgb(64, 114, 241);
 }
 
+body {
+  position: relative;
+  min-height: 100vh;
+}
+
 .navigation_bar {
   list-style-type: none;
-  border: 2px solid var(--main-color);
+  border-bottom: 3px solid var(--main-color);
   height: 145px;
 }
 
@@ -33,7 +38,7 @@
   display: block;
   float: right;
   clear: right;
-  font-size: 30px;
+  font-size: 25px;
   text-align: center;
   margin: 10px;
   padding: 5px;
@@ -47,7 +52,7 @@
   display: block;
   float: right;
   clear: right;
-  font-size: 30px;
+  font-size: 25px;
   text-align: center;
   margin: 10px;
   padding: 5px;
@@ -60,6 +65,8 @@
 
 .footer {
   background-color: rgb(241, 241, 241);
+  bottom: 0;
+  width: 100%;
 }
 
 .logo_footer {
@@ -90,9 +97,35 @@ h5 {
   margin-left: 30px;
 }
 
+h7 {
+  margin-top: 35px;
+  margin-left: 20px;
+}
+
 .footer_text {
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
   margin-top: -70px;
+}
+
+.add_button {
+  float: right;
+  font-size: 25px;
+  text-align: center;
+  margin: 10px;
+  padding: 5px;
+  width: 150px;
+  color: var(--main-color);
+  text-decoration: none;
+  border: 2px solid var(--main-color);
+}
+
+.searchbars {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  height: 75px;
+  clear:both;
 }

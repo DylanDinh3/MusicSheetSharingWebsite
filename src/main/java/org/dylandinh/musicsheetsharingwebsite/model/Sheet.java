@@ -4,8 +4,6 @@ import java.util.Set;
 
 import javax.persistence.*;
 
-import org.springframework.web.multipart.MultipartFile;
-
 @Entity
 @Table(name = "sheets")
 public class Sheet {
@@ -17,9 +15,8 @@ public class Sheet {
 	@Column(name = "title")
 	private String title;
 
-	@Lob
-	@Column(name = "sheets_image")
-	private MultipartFile images;
+	@Column(name = "images_path")
+	private String imagesPath;
 
 	@ManyToOne
 	@JoinColumn(name = "user_sheets", nullable = false)
@@ -53,12 +50,12 @@ public class Sheet {
 		this.title = title;
 	}
 
-	public MultipartFile getImages() {
-		return images;
+	public String getImagesPath() {
+		return imagesPath;
 	}
 
-	public void setImages(MultipartFile images) {
-		this.images = images;
+	public void setImagesPath(String imagesPath) {
+		this.imagesPath = imagesPath;
 	}
 
 	public User getUser() {

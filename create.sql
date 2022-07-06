@@ -5,7 +5,7 @@ insert into hibernate_sequence values ( 1 );
 create table instruments (instrument_id integer not null, name varchar(255), primary key (instrument_id)) engine=InnoDB;
 create table instruments_sheets (instrument_id integer not null, sheet_id integer not null, primary key (instrument_id, sheet_id)) engine=InnoDB;
 create table role (role_id integer not null, name varchar(255), primary key (role_id)) engine=InnoDB;
-create table sheets (sheet_id integer not null, sheets_image longblob, title varchar(255), user_sheets integer not null, primary key (sheet_id)) engine=InnoDB;
+create table sheets (sheet_id integer not null, images_path varchar(255), title varchar(255), user_sheets integer not null, primary key (sheet_id)) engine=InnoDB;
 create table users (user_id integer not null, email varchar(255), password varchar(255), username varchar(255), primary key (user_id)) engine=InnoDB;
 create table users_roles (user_id integer not null, role_id integer not null) engine=InnoDB;
 alter table composers add constraint UK_1lj47g06jorc0c0yxj52pe1nm unique (name);

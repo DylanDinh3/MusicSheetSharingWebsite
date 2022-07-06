@@ -6,6 +6,9 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<title>Add Sheet Music Page</title>
+
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+		integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 	<link rel="stylesheet" href="../css/main.css" />
 	<link rel="stylesheet" href="../css/forms.css" />
 </head>
@@ -14,41 +17,37 @@
 	<ul class="navigation_bar">
 		<a th:href="@{/}" class="logo"><img src="../images/MusicSheetsLogo.png" alt="logo" /></a>
 		<a th:href="@{/}" class="home_nav">Home</a>
-		<a href="#" class="sheets_nav">Sheets</a>
-		<a href="#" class="profile_nav">Profile</a>
-		<div sec:authorize="isAnonymous()">
-			<a th:href="@{/login}" class="login_button">Login</a>
-		</div>
+		<a th:href="@{/sheets}" class="sheets_nav">Sheets</a>
+		<a th:href="@{/profile}" class="profile_nav">Profile</a>
 		<div sec:authorize="isAuthenticated()">
 			<a th:href="@{/logout}" class="logout_button">Logout</a>
 		</div>
 		<br />
-		<div sec:authorize="isAnonymous()">
-			<a th:href="@{/registration}" class="register_button">Register</a>
-		</div>
 	</ul>
-	
-	<p th:if="${param.success}">Successfully added!</p>
-	
+
 	<div class="add_form">
 		<h1>Add New Sheet Music</h1>
 		<br />
-		<form action="#" th:action="@{/sheets/addSheet}" th:object="${sheetInput}" method="post" enctype="multipart/form-data">
+		<form th:action="@{/sheets/addSheet}" th:object="${sheetInput}" method="post">
 			<label for="Title">Enter Title</label>
 			<input type="text" th:field="*{title}" placeholder="Title" required />
 			<br />
-			<label for="Composer">Enter Composer(s), seperated by a comma</label>
+			<label for="Composer">Enter Composer(s)</label>
 			<input type="text" th:field="*{composers}" placeholder="Composer(s)" required />
+			<small>Ex: Comp1, Comp2, Comp3</small>
 			<br />
-			<label for="Instrument">Enter Instrument(s), seperated by a comma</label>
-			<input type="text" name="instruments" placeholder="Instrument(s)" required />
+			<label for="Instrument">Enter Instrument(s)</label>
+			<input type="text" name="instruments" th:field="*{instruments}" placeholder="Instrument(s)" required />
+			<small>Ex: Ins1, Ins2, Ins3</small>
 			<br />
-			<label for="sheets">Upload Music Sheets File Here</label>
-			<input type="file" name="file" th:field="*{images}" required />
+			<label for="sheets">Enter Music Sheets Image URL Here</label>
+			<input type="text" name="file" th:field="*{images}" placeholder="Image URL" required />
+			<small>Ex: https://website.com/music.pdf</small>
 			<br />
 			<button type="submit">Submit</button>
 		</form>
 	</div>
+
 	<div class="footer">
 		<a th:href="@{/}" class="logo_footer"><img src="../images/MusicSheetsLogo.png" alt="logo" /></a>
 		<div class="pages_list">
@@ -60,9 +59,9 @@
 		<br />
 		<h5>© Music Sheets 2022</h5>
 		<div class="footer_text">
-			<h5>Contact Us</h5>
-			<h5>Terms and Conditions</h5>
-			<h5>Privacy Policy</h5>
+			<h7>Contact Us</h7>
+			<h7>Terms and Conditions</h7>
+			<h7>Privacy Policy</h7>
 		</div>
 	</div>
 </body>

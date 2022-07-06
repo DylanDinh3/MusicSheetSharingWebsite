@@ -6,6 +6,8 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<title>Registration Page</title>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+		integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 	<link rel="stylesheet" href="../css/main.css" />
 	<link rel="stylesheet" href="../css/forms.css" />
 </head>
@@ -14,8 +16,8 @@
 	<ul class="navigation_bar">
 		<a th:href="@{/}" class="logo"><img th:src="@{images/MusicSheetsLogo.png}" alt="logo" /></a>
 		<a th:href="@{/}" class="home_nav">Home</a>
-		<a href="#" class="sheets_nav">Sheets</a>
-		<a href="#" class="profile_nav">Profile</a>
+		<a th:href="@{/sheets}" class="sheets_nav">Sheets</a>
+		<a th:href="@{/profile}" class="profile_nav">Profile</a>
 		<div sec:authorize="isAnonymous()">
 			<a th:href="@{/login}" class="login_button">Login</a>
 		</div>
@@ -31,58 +33,52 @@
 		</div>
 	</div>
 
-	<h1>Registration</h1>
 	<div class="registration_form">
-		<form th:action="@{/registration}" th:object="${user}" method="post">
+		<h1>Registration</h1>
+		<form th:action="@{/registration}" th:object="${user}" method="post" style="width: 35%;">
 			<p th:if="${#fields.hasGlobalErrors()}" th:each="error : ${#fields.errors('global')}" th:text="${error}">
 				Validation error
 			</p>
 
 			<div th:classappend="${#fields.hasErrors('username')}? 'has-error':''">
-				<label for="username">Username</label>
+				<label for="username" style="margin-bottom: -10px;">Username</label>
 				<input id="username" th:field="*{username}" placeholder="Username" required />
 				<p th:each="error: ${#fields.errors('username')}" th:text="${error}">
 					Validation error
 				</p>
 			</div>
+			<br />
 			<div th:classappend="${#fields.hasErrors('email')}? 'has-error':''">
-				<label for="email">Email</label>
+				<label for="email" style="margin-bottom: -10px;">Email</label>
 				<input id="email" th:field="*{email}" placeholder="Email" required />
 				<p th:each="error : ${#fields.errors('email')}" th:text="${error}">
 					Validation error
 				</p>
 			</div>
-			<!-- <div th:classappend="${#fields.hasErrors('confirmEmail')}? 'has-error':''">
-				<label for="confirmEmail">Confirm e-mail</label>
-				<input id="confirmEmail" th:field="*{confirmEmail}" required />
-				<p th:each="error : ${#fields.errors('confirmEmail')}" th:text="${error}">
-					Validation error
-				</p>
-			</div> -->
+			<br />
 			<div th:classappend="${#fields.hasErrors('password')}? 'has-error':''">
-				<label for="password">Password</label>
+				<label for="password" style="margin-bottom: -10px;">Password</label>
 				<input id="password" type="password" th:field="*{password}" placeholder="Password" required />
 				<p th:each="error : ${#fields.errors('password')}" th:text="${error}">
 					Validation error
 				</p>
 			</div>
+			<br />
 			<div th:classappend="${#fields.hasErrors('confirmPassword')}? 'has-error':''">
-				<label for="confirmPassword">Confirm password</label>
+				<label for="confirmPassword" style="margin-bottom: -10px;">Confirm password</label>
 				<input id="confirmPassword" type="password" th:field="*{confirmPassword}" placeholder="Reenter Password"
 					required />
 				<p th:each="error : ${#fields.errors('confirmPassword')}" th:text="${error}">
 					Validation error
 				</p>
 			</div>
-			<div th:classappend="${#fields.hasErrors('terms')}? 'has-error':''">
+			<br />
+			<div class="checkbox">
 				<input id="terms" type="checkbox" th:field="*{terms}" required />
 				<label for="terms">
 					I agree with the <a href="#">terms and conditions</a> for
-					Registration.
+					registration.
 				</label>
-				<p th:each="error : ${#fields.errors('terms')}" th:text="${error}">
-					Validation error
-				</p>
 			</div>
 			<button type="submit">Register</button>
 			<br />
@@ -91,7 +87,7 @@
 		</form>
 	</div>
 	<div class="footer">
-		<a href="#" class="logo_footer"><img th:src="@{images/MusicSheetsLogo.png}" alt="logo" /></a>
+		<a th:href="@{/}" class="logo_footer"><img th:src="@{images/MusicSheetsLogo.png}" alt="logo" /></a>
 		<div class="pages_list">
 			<h3>Pages</h3>
 			<li>Home</li>
@@ -101,9 +97,9 @@
 		<br />
 		<h5>© Music Sheets 2022</h5>
 		<div class="footer_text">
-			<h5>Contact Us</h5>
-			<h5>Terms and Conditions</h5>
-			<h5>Privacy Policy</h5>
+			<h7>Contact Us</h7>
+			<h7>Terms and Conditions</h7>
+			<h7>Privacy Policy</h7>
 		</div>
 	</div>
 </body>

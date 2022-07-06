@@ -42,32 +42,32 @@ public class Instrument {
 		return this.name;
 	}
 
-	@Override
-	public int hashCode() {
-		Integer id = (Integer)instrumentId;
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		return result;
-	}
+//	@Override
+//	public int hashCode() {
+//		Integer id = (Integer)instrumentId;
+//		final int prime = 31;
+//		int result = 1;
+//		result = prime * result + ((id == null) ? 0 : id.hashCode());
+//		return result;
+//	}
 
-	@Override
-	public boolean equals(Object obj) {
-		Integer id = instrumentId;
-		if(this == obj)
-			return true;
-		if(obj == null)
-			return false;
-		if(getClass() != obj.getClass())
-			return false;
-		Instrument other = (Instrument)obj;
-		Integer otherId = other.getInstrumentId();
-		if(id == null) {
-			if(otherId != null)
-				return false;
-		}
-		else if(!id.equals(otherId))
-			return false;
-		return true;
-	}
+//	@Override
+//	public boolean equals(Object obj) {
+//		Integer id = instrumentId;
+//		if(this == obj)
+//			return true;
+//		if(obj == null)
+//			return false;
+//		if(getClass() != obj.getClass())
+//			return false;
+//		Instrument other = (Instrument)obj;
+//		Integer otherId = other.getInstrumentId();
+//		if(id == null) {
+//			if(otherId != null)
+//				return false;
+//		}
+//		else if(!id.equals(otherId))
+//			return false;
+//		return true;
+//	}
 }

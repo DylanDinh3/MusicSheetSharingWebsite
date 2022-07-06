@@ -1,5 +1,8 @@
 package org.dylandinh.musicsheetsharingwebsite.controller;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import javax.validation.Valid;
 
 import org.dylandinh.musicsheetsharingwebsite.model.User;
@@ -38,6 +41,29 @@ public class UserRegistrationController {
 		User existing = userService.findByEmail(userDto.getEmail());
 		if(existing != null) {
 			result.rejectValue("email", null, "There is already an account registered with that email");
+		}
+		
+		existing = userService.findByUsername(userDto.getUsername());
+		if(existing != null) {
+			result.rejectValue("username", null, "Username is already taken");
+		}
+		
+		String email = userDto.getEmail();
+		String regex = "^[A-Za-z0-9+_.-]+@(.+)$";
+		Pattern pattern = Pattern.compile(regex);
+		Matcher matcher = pattern.matcher(email);
+		if(!matcher.matches()) {
+			result.rejectValue("email", null, "Please enter valid email");
+		}
+		
+		String password = userDto.getPassword();
+		if(password.length() < 6) {
+			result.rejectValue("password", null, "Password must be 6 characters or more");
+		}
+		
+		String confirmPassword = userDto.getConfirmPassword();
+		if(!password.equals(confirmPassword)) {
+			result.rejectValue("confirmPassword", null, "Please enter the same password");
 		}
 
 		if(result.hasErrors()) {
